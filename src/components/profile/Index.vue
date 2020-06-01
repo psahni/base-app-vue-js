@@ -26,6 +26,7 @@
 
 <script>
 const API_URL = 'http://localhost:9000';
+
 export default {
   created() {
     return fetch(`${API_URL}/profiles`)
@@ -41,6 +42,7 @@ export default {
   },
   methods: {
     remove(id) {
+      // eslint-disable-next-line no-underscore-dangle
       this.profiles = this.profiles.filter((profile) => profile._id !== id);
     },
   },
