@@ -61,6 +61,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
     'prefer-promise-reject-errors': 'off',
+    "no-console": ['off', "log", "debug", "info", "time", "timeEnd", "trace"],
 
 
     // allow debugger during development only

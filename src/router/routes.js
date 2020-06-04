@@ -2,30 +2,32 @@
 const routes = [
   {
     path: '/login',
-    component: () => import('components/login.vue'),
+    name: 'login',
+    component: () => import('components/VueMetamask.vue'),
     children: [
-      { path: '', component: () => import('components/login.vue') },
+      { path: '', component: () => import('components/VueMetamask.vue') },
     ],
   },
   {
     path: '/',
+    name: 'home',
     component: () => import('layouts/Main.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
+      { path: '', component: () => import('pages/Index.vue'), meta: { requireAuth: true } },
     ],
   },
   {
     path: '/profiles',
     component: () => import('layouts/Main.vue'),
     children: [
-      { path: '', component: () => import('components/profile/Index.vue') },
+      { path: '', component: () => import('components/profile/Index.vue'), meta: { requireAuth: true } },
     ],
   },
   {
     path: '/profiles/new',
     component: () => import('layouts/Main.vue'),
     children: [
-      { path: '', component: () => import('components/profile/Create.vue') },
+      { path: '', component: () => import('components/profile/Create.vue'), meta: { requireAuth: true } },
     ],
   },
   {

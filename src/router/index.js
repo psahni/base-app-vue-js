@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-
+import { isLoggedIn } from '../helpers/authentication';
 import routes from './routes';
+
 
 Vue.use(VueRouter);
 
@@ -25,6 +26,21 @@ export default function (/* { store, ssrContext } */) {
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE,
   });
+
+  Router.beforeEach((to, from, next) => {
+    console.info('next path --> ', to.path);
+    if (to.meta.requireAuth) {
+      if (!isLoggedIn()) {
+        next({ name: 'login' });
+      } else {
+        next();
+      }
+    } else {
+      console.log('simple redirect');
+      next();
+    }
+  });
+
 
   return Router;
 }
