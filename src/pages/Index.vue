@@ -49,63 +49,65 @@
 <template>
   <div class="q-pa-md">
     <div class="q-gutter-md row items-start">
-      <q-img
-        src="https://cdn.quasar.dev/img/image-src.png"
-        srcset="https://cdn.quasar.dev/img/image-1x.png 300w,
-                https://cdn.quasar.dev/img/image-2x.png 2x,
-                https://cdn.quasar.dev/img/image-3x.png 3x,
-                https://cdn.quasar.dev/img/image-4x.png 4x"
-        style="height: 280px; max-width: 300px"
+     <q-img v-for="img in images" :key="img"
+       :src="img"
+       :srcset="img"
+       style="height: 280px; max-width: 300px"
+       class="pointer"
       >
         <div class="absolute-bottom text-body1 text-center">
-          With srcset
+            With srcset
         </div>
-      </q-img>
-
-       <q-img
-          src="https://cdn.quasar.dev/img/parallax2.jpg"
-          style="height: 280px; max-width: 300px"
-        >
-          <div class="absolute-full text-subtitle2 flex flex-center">
-            Caption
-          </div>
-        </q-img>
-
-      <q-img
-        src="https://cdn.quasar.dev/img/image-src.png"
-        srcset="https://cdn.quasar.dev/img/image-1x.png 400w,
-                https://cdn.quasar.dev/img/image-2x.png 800w,
-                https://cdn.quasar.dev/img/image-3x.png 1200w,
-                https://cdn.quasar.dev/img/image-4x.png 1600w"
-        sizes="(max-width: 400px) 400w,
-              (min-width: 400px) and (max-width: 800px) 800w,
-              (min-width: 800px) and (max-width: 1200px) 1200w,
-              (min-width: 1200px) 1600w"
-        style="height: 280px; max-width: 300px"
-      >
-        <div class="absolute-bottom text-body1 text-center">
-          With srcset & sizes
-        </div>
-      </q-img>
+     </q-img>
     </div>
-    <div>
+    <div class='af'>
       <h4>Sample Heading 1</h4>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      </p>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      </p>
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       </p>
     </div>
-     <div>
+     <!-- <div>
       <h4>Sample Heading 2</h4>
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       </p>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
 export default {
   name: 'PageIndex',
+
+  data() {
+    return {
+      images: [
+        'https://images-na.ssl-images-amazon.com/images/I/81Vv9UvptRL._SY355_.png',
+        'https://images-na.ssl-images-amazon.com/images/I/81B8zxdRaRL._SY355_.png',
+        'https://images-na.ssl-images-amazon.com/images/I/71zFKb2gQNL._SX425_.png',
+        'https://images-na.ssl-images-amazon.com/images/I/41a1syPyhOL.jpg',
+        'https://n2.sdlcdn.com/imgs/e/i/7/Ritzkart-Brown-Formal-Hair-Wig-SDL063790351-2-affc0.JPG',
+        'https://www.thehindu.com/entertainment/movies/o50yp7/article31455525.ece/alternates/FREE_435/thappad',
+        'https://images-eu.ssl-images-amazon.com/images/I/615mQ9fY6bL.jpg',
+        'https://mcdn.wallpapersafari.com/medium/23/62/714DV3.jpg',
+        'https://images-na.ssl-images-amazon.com/images/I/81B8zxdRaRL._SY355_.png',
+        'https://images-na.ssl-images-amazon.com/images/I/41a1syPyhOL.jpg',
+        'https://www.thehindu.com/entertainment/movies/o50yp7/article31455525.ece/alternates/FREE_435/thappad',
+        'https://n2.sdlcdn.com/imgs/e/i/7/Ritzkart-Brown-Formal-Hair-Wig-SDL063790351-2-affc0.JPG',
+      ],
+    };
+  },
 };
+
 </script>

@@ -8,9 +8,9 @@
       </q-toolbar>
     </q-header>
     <q-page-container>
-      <q-banner class="bg-blue-grey-1 text-black">
+      <!-- <q-banner class="bg-blue-grey-1 text-black">
         Banner Area
-      </q-banner>
+      </q-banner> -->
       <div class='container'>
         <router-view />
       </div>
