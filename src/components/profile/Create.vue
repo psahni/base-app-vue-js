@@ -36,6 +36,13 @@
         ]"
       />
 
+      <q-input
+        type="file"
+        v-model="image"
+        hint="Photo *"
+      />
+      <div>{{ progressUpload }} </div>
+
       <div>
         <q-btn label="Submit" type="submit" color="primary"/>
         <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
@@ -47,7 +54,11 @@
 
 <script>
 import axios from 'axios';
+import * as filestack from 'filestack-js';
 import APP_CONFIG from 'boot/config.js';
+
+const apikey = 'Abb8QekwoRY6K1sPU0uQnz';
+const client = filestack.init(apikey);
 
 export default {
   data() {
@@ -55,6 +66,8 @@ export default {
       name: null,
       age: null,
       location: null,
+      image: null,
+      progressUpload: null,
     };
   },
 
@@ -76,15 +89,36 @@ export default {
       //   });
       // }
 
-      axios.post(`${APP_CONFIG.api_url}/profiles`, {
-        name: this.name,
-        age: this.age,
-        location: this.location,
-      }).then((response) => {
-        console.log(response);
-      });
+      const formData = new FormData();
+      formData.append('name', this.name);
+      formData.append('age', this.age);
+      formData.append('location', this.location);
 
-      this.$router.push('/profiles');
+      const onProgress = (evt) => {
+        this.progressUpload = `${evt.totalPercent}%`;
+      };
+
+      client.upload(this.image.item(0), { onProgress }, {}, {})
+        .then((result) => {
+          console.log('success: ', JSON.stringify(result));
+          formData.append('image_url', result.url);
+          this.saveProfile(formData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    saveProfile(formData) {
+      const config = {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
+      };
+      axios.post(`${APP_CONFIG.api_url}/profiles`, formData, config).then((response) => {
+        console.log('Profile Created:- ', response);
+        this.$router.push('/profiles');
+      });
     },
 
     onReset() {

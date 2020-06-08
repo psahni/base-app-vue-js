@@ -7,7 +7,12 @@
           :key="item.message"
         >
           <q-avatar>
-            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+            <img
+              class='pointer'
+              v-on:click='show(item._id)'
+              :src="item.image_url"
+              style='width:60px;height:60px;'
+            />
           </q-avatar>
          <q-item-section class='profile-name'>{{ item.name }}</q-item-section>
          <q-item-section
@@ -25,6 +30,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 const API_URL = 'http://localhost:9000';
 
 export default {
@@ -44,6 +51,12 @@ export default {
     remove(id) {
       // eslint-disable-next-line no-underscore-dangle
       this.profiles = this.profiles.filter((profile) => profile._id !== id);
+      axios.delete(`${API_URL}/profiles/${id}`).then((res) => {
+        console.log('response: - ', res);
+      });
+    },
+    show(id) {
+      this.$router.push(`/profiles/${id}`);
     },
   },
 };

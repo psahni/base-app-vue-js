@@ -8,9 +8,9 @@
       </q-toolbar>
     </q-header>
     <q-page-container>
-      <!-- <q-banner class="bg-blue-grey-1 text-black">
-        Banner Area
-      </q-banner> -->
+      <q-banner class="af bg-blue-grey-1 text-black">
+        {{ bannerText }}
+      </q-banner>
       <div class='container'>
         <router-view />
       </div>
@@ -31,6 +31,7 @@ export default {
   data() {
     return {
       leftDrawerOpen: false,
+      bannerText: 'Contact No: +91xxxxxxxxxx',
     };
   },
 };
