@@ -24,17 +24,17 @@ const routes = [
     ],
   },
   {
-    path: '/profiles/:id',
-    component: () => import('layouts/Main.vue'),
-    children: [
-      { path: '', component: () => import('components/profile/Show.vue'), meta: { requireAuth: true } },
-    ],
-  },
-  {
     path: '/profiles/new',
     component: () => import('layouts/Main.vue'),
     children: [
       { path: '', component: () => import('components/profile/Create.vue'), meta: { requireAuth: true } },
+    ],
+  },
+  {
+    path: '/profiles/:id',
+    component: () => import('layouts/Main.vue'),
+    children: [
+      { path: '', component: () => import('components/profile/Show.vue'), meta: { requireAuth: true } },
     ],
   },
   {
